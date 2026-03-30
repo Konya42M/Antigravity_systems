@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatolia Pizza & Kebap Ruit | Frisch. Authentisch. Lokal.</title>
+    <meta name="description" content="Echte Handwerkskunst in Ostfildern-Ruit. Meisterhafte Döner Sandwiches und Steinofenpizza bei Anatolia, Kirchheimer Str. 7. Tel: 0711 3101962.">
+    <meta property="og:title" content="Anatolia Pizza & Kebap Ruit">
+    <meta property="og:description" content="Döner & Pizza aus echter Küche – Kirchheimer Str. 7, 73760 Ostfildern-Ruit">
+    <meta property="og:image" content="https://img.restaurantguru.com/rc43-photo-Anatolia-Pizza-and-Kebap-Ruit-2020-08-3.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23D62828'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-size='14' fill='white' font-family='serif'%3EA%3C/text%3E%3C/svg%3E">
+
+    <style>
+        /* ─── Design Tokens ─────────────────────────────────── */
+        :root {
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 48px;
+            --space-2xl: 80px;
+            --space-3xl: 120px;
+
+            --bg-base: #FDFBF7;
+            --bg-warm: #F8F4EE;
+            --bg-elevated: #FFFFFF;
+            --bg-inverted: #111111;
+
+            --text-main: #1A1A1A;
+            --text-muted: #5A5A5A;
+            --text-inverted: #F5F5F0;
+
+            --brand: #D62828;
+            --brand-hover: #A01D1D;
+            --brand-light: rgba(214,40,40,0.08);
+
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+            --shadow-card: 0 2px 8px rgba(26,26,26,0.05), 0 8px 24px rgba(26,26,26,0.06);
+            --shadow-modal: 0 24px 80px rgba(0,0,0,0.18);
+
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 28px;
+            --radius-pill: 100px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── Typography ─────────────────────────────────────── */
+        h1, h2, h3 { font-family: 'Instrument Serif', serif; font-weight: 400; line-height: 1.1; }
+        h1 { font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -0.02em; margin-bottom: var(--space-lg); }
+        h2 { font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: var(--space-md); }
+        h3 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: var(--space-md); font-weight: 400; }
+        p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: var(--space-md); }
+        a { color: inherit; text-decoration: none; }
+
+        /* ─── Buttons ─────────────────────────────────────────── */
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: var(--space-sm);
+            padding: 14px 32px; background: var(--brand); color: #fff;
+            font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: 1rem;
+            border-radius: var(--radius-pill); border: none; cursor: pointer;
+            box-shadow: 0 4px 16px rgba(214,40,40,0.25);
+            transition: transform 0.4s var(--ease-spring), background 0.3s, box-shadow 0.3s;
+        }
+        .btn-primary:hover { background: var(--brand-hover); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(214,40,40,0.35); }
+        .btn-primary:active { transform: scale(0.97); }
+        .btn-primary:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: var(--space-sm);
+            padding: 13px 30px; background: transparent; color: var(--text-main);
+            font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: 1rem;
+            border-radius: var(--radius-pill); border: 1.5px solid rgba(26,26,26,0.25); cursor: pointer;
+            transition: transform 0.4s var(--ease-spring), background 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .btn-ghost:hover { background: var(--text-main); color: var(--bg-base); border-color: var(--text-main); transform: translateY(-2px); }
+        .btn-ghost:active { transform: scale(0.97); }
+
+        /* ─── Layout ──────────────────────────────────────────── */
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-lg); }
+        .section { padding: var(--space-3xl) 0; }
+        .grid-2 { display: grid; grid-template-columns: 1fr; gap: var(--space-xl); align-items: center; }
+        @media (min-width: 1024px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: 80px; } }
+
+        /* ─── Grain Texture ───────────────────────────────────── */
+        body::after {
+            content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+        }
+
+        /* ─── Reveal Animations ───────────────────────────────── */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease-smooth), transform 0.75s var(--ease-spring); }
+        .reveal.in-view { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* ─── Top Contact Bar ─────────────────────────────────── */
+        .top-bar {
+            background: var(--bg-inverted); color: var(--text-inverted);
+            padding: 10px 0; font-size: 0.85rem; font-weight: 500;
+        }
+        .top-bar-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .top-bar a { color: var(--text-inverted); display: inline-flex; align-items: center; gap: 6px; transition: color 0.3s; }
+        .top-bar a:hover { color: #e88; }
+        .top-bar svg { flex-shrink: 0; }
+
+        /* ─── Navigation ──────────────────────────────────────── */
+        header {
+            position: sticky; top: 0;
+            background: rgba(253,251,247,0.88); backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(26,26,26,0.07);
+            z-index: 100; height: 80px; display: flex; align-items: center;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; }
+        .nav-logo img { height: 52px; width: auto; }
+        .nav-logo-text { font-family: 'Instrument Serif', serif; font-size: 1.25rem; color: var(--text-main); letter-spacing: -0.01em; }
+
+        .nav-links { display: none; }
+        @media (min-width: 1024px) {
+            .nav-links { display: flex; gap: var(--space-xl); align-items: center; }
+            .nav-link { font-weight: 500; color: var(--text-main); position: relative; padding-bottom: 2px; }
+            .nav-link::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: var(--brand); transition: width 0.35s var(--ease-spring); }
+            .nav-link:hover::after { width: 100%; }
+            .nav-link:focus-visible { outline: 2px solid var(--brand); border-radius: 2px; }
+        }
+
+        /* ─── Badge ───────────────────────────────────────────── */
+        .badge {
+            display: inline-flex; align-items: center; padding: 4px 14px;
+            background: var(--brand-light); color: var(--brand); border-radius: var(--radius-pill);
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: var(--space-md);
+        }
+
+        /* ─── Hero ────────────────────────────────────────────── */
+        .hero {
+            position: relative; min-height: 88vh;
+            display: flex; align-items: center; padding: var(--space-xl) 0;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0; z-index: -1;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center 55%;
+        }
+        .hero-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(110deg, rgba(253,251,247,0.96) 0%, rgba(253,251,247,0.78) 45%, rgba(253,251,247,0.2) 100%);
+        }
+        .hero-content { max-width: 640px; position: relative; z-index: 1; }
+        .hero-content p { font-size: 1.2rem; max-width: 520px; }
+        .hero-actions { display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-xl); }
+        .accent { color: var(--brand); font-style: italic; }
+
+        /* ─── Info Strip ──────────────────────────────────────── */
+        .info-strip { background: var(--bg-inverted); color: var(--text-inverted); padding: var(--space-xl) 0; }
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); text-align: center; }
+        @media (min-width: 768px) { .info-grid { grid-template-columns: repeat(3, 1fr); } }
+        .info-item { border-right: 1px solid rgba(255,255,255,0.07); padding: 0 var(--space-lg); }
+        @media (min-width: 768px) { .info-item:last-child { border-right: none; } }
+        .info-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: var(--space-sm); }
+        .info-value { font-size: 1.15rem; font-weight: 500; color: #fff; }
+        .info-value a { color: #fff; transition: color 0.3s; }
+        .info-value a:hover { color: #e99; }
+
+        /* ─── Section Headers ─────────────────────────────────── */
+        .section-header { text-align: center; max-width: 600px; margin: 0 auto var(--space-3xl); }
+
+        /* ─── Image Cards ─────────────────────────────────────── */
+        .img-card { border-radius: var(--radius-lg); overflow: hidden; position: relative; box-shadow: var(--shadow-card); }
+        .img-card img { width: 100%; height: 480px; object-fit: cover; display: block; transition: transform 0.75s var(--ease-spring); }
+        .img-card:hover img { transform: scale(1.03); }
+        .img-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.45), transparent 50%); pointer-events: none; }
+        .img-caption {
+            position: absolute; bottom: var(--space-lg); left: var(--space-lg);
+            background: var(--bg-elevated); padding: 6px 14px; border-radius: var(--radius-sm);
+            font-size: 0.875rem; font-weight: 600; z-index: 2;
+        }
+
+        /* ─── About ───────────────────────────────────────────── */
+        .about-text p:last-child { margin-bottom: 0; }
+
+        /* ─── Why Us ──────────────────────────────────────────── */
+        .why-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
+        @media (min-width: 768px) { .why-grid { grid-template-columns: repeat(3, 1fr); } }
+        .why-card {
+            background: var(--bg-elevated); border-radius: var(--radius-md);
+            padding: var(--space-xl) var(--space-lg);
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(26,26,26,0.05);
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s;
+        }
+        .why-card:hover { transform: translateY(-6px); box-shadow: 0 8px 32px rgba(26,26,26,0.1); }
+        .why-icon { width: 52px; height: 52px; background: var(--brand-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-lg); }
+        .why-card h3 { font-size: 1.3rem; font-family: 'Work Sans', sans-serif; font-weight: 600; margin-bottom: var(--space-sm); }
+        .why-card p { font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ─── Menu Section ────────────────────────────────────── */
+        .menu-row { display: grid; grid-template-columns: 1fr; gap: var(--space-xl); align-items: center; margin-bottom: var(--space-3xl); }
+        @media (min-width: 1024px) { .menu-row { grid-template-columns: 1fr 1fr; gap: 80px; } }
+        .menu-row:last-child { margin-bottom: 0; }
+
+        /* ─── Hours Grid ──────────────────────────────────────── */
+        .hours-table { width: 100%; border-collapse: collapse; }
+        .hours-table td { padding: 10px 0; font-size: 1rem; border-bottom: 1px solid rgba(26,26,26,0.07); }
+        .hours-table td:first-child { color: var(--text-muted); }
+        .hours-table td:last-child { font-weight: 600; text-align: right; }
+        .hours-table tr:last-child td { border-bottom: none; }
+
+        /* ─── CTA Banner ──────────────────────────────────────── */
+        .cta-section {
+            background: var(--bg-inverted); color: #fff;
+            padding: var(--space-3xl) 0;
+            position: relative; overflow: hidden;
+            text-align: center;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(214,40,40,0.25) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 30%, rgba(214,40,40,0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .cta-section h2 { color: #fff; margin-bottom: var(--space-md); }
+        .cta-section p { color: rgba(255,255,255,0.6); font-size: 1.2rem; max-width: 500px; margin: 0 auto var(--space-xl); }
+
+        /* ─── Footer ──────────────────────────────────────────── */
+        footer { background: var(--bg-base); border-top: 1px solid rgba(26,26,26,0.07); padding: var(--space-3xl) 0 var(--space-xl); }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-xl); }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+        .footer-brand img { height: 44px; margin-bottom: var(--space-md); }
+        .footer-brand p { font-size: 0.9rem; max-width: 280px; }
+        .footer-col h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: var(--space-md); font-weight: 600; }
+        .footer-col li { list-style: none; margin-bottom: 8px; }
+        .footer-col a { font-size: 0.95rem; color: var(--text-muted); transition: color 0.3s; }
+        .footer-col a:hover { color: var(--text-main); }
+        .footer-col button { background: none; border: none; padding: 0; font-family: 'Work Sans', sans-serif; font-size: 0.95rem; color: var(--text-muted); cursor: pointer; transition: color 0.3s; display: block; margin-bottom: 8px; }
+        .footer-col button:hover { color: var(--text-main); }
+        .footer-bottom { margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid rgba(26,26,26,0.07); font-size: 0.85rem; color: var(--text-muted); }
+
+        /* ─── Cookie Banner ───────────────────────────────────── */
+        .cookie {
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(160%);
+            width: calc(100% - 48px); max-width: 560px;
+            background: var(--bg-elevated); border: 1px solid rgba(26,26,26,0.08); border-radius: var(--radius-md);
+            padding: var(--space-lg); box-shadow: var(--shadow-modal); z-index: 10001;
+            display: flex; flex-direction: column; gap: var(--space-md);
+            transition: transform 0.6s var(--ease-spring), opacity 0.5s;
+            opacity: 0; visibility: hidden;
+        }
+        .cookie.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+        .cookie h3 { font-size: 1.1rem; font-family: 'Work Sans', sans-serif; font-weight: 600; }
+        .cookie p { font-size: 0.9rem; margin: 0; }
+        .cookie-btns { display: flex; gap: var(--space-sm); justify-content: flex-end; flex-wrap: wrap; }
+
+        /* ─── Modals ──────────────────────────────────────────── */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(6px);
+            z-index: 11000; display: flex; align-items: center; justify-content: center; padding: 16px;
+            opacity: 0; visibility: hidden; transition: opacity 0.35s, visibility 0.35s;
+        }
+        .modal-overlay.open { opacity: 1; visibility: visible; }
+        .modal-box {
+            background: var(--bg-base); width: 100%; max-width: 780px; max-height: 88vh;
+            border-radius: var(--radius-lg); display: flex; flex-direction: column;
+            box-shadow: var(--shadow-modal);
+            transform: scale(0.96) translateY(16px); transition: transform 0.45s var(--ease-spring);
+        }
+        .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+        .modal-head { display: flex; justify-content: space-between; align-items: center; padding: var(--space-lg) var(--space-xl); border-bottom: 1px solid rgba(26,26,26,0.08); }
+        .modal-head h2 { margin: 0; font-size: 2.25rem; }
+        .modal-close-btn { width: 38px; height: 38px; border-radius: 50%; background: rgba(26,26,26,0.06); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+        .modal-close-btn:hover { background: rgba(26,26,26,0.12); }
+        .modal-body { padding: var(--space-xl); overflow-y: auto; flex: 1; }
+        .modal-body h3 { font-family: 'Instrument Serif'; font-size: 1.8rem; margin-top: var(--space-lg); margin-bottom: var(--space-sm); }
+        .modal-body p, .modal-body li { font-size: 1rem; }
+        .modal-body ul { padding-left: var(--space-lg); margin-bottom: var(--space-md); }
+
+        /* ─── Floating Phone Button (mobile) ─────────────────── */
+        .fab-call {
+            position: fixed; bottom: 28px; right: 24px; z-index: 9000;
+            width: 58px; height: 58px; background: var(--brand); color: #fff;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 24px rgba(214,40,40,0.4);
+            transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+        }
+        .fab-call:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(214,40,40,0.5); }
+        @media (min-width: 1024px) { .fab-call { display: none; } }
+
+        /* ─── Responsive Images ───────────────────────────────── */
+        @media (max-width: 1023px) { .img-card img { height: 320px; } }
+    </style>
+</head>
+<body>
+
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <a href="tel:+4971131019620">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.11 6.11l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+                0711 3101962
+            </a>
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="inline-size: 14px; margin-right: 4px; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Mo–Sa: 11:00–22:30 &nbsp;|&nbsp; So: 12:00–22:00
+            </span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-inner">
+            <a href="#" class="nav-logo" aria-label="Anatolia - Startseite">
+                <img src="assets/img/logo.png" alt="Anatolia Logo">
+                <span class="nav-logo-text">Anatolia</span>
+            </a>
+            <nav class="nav-links" aria-label="Seitennavigation">
+                <a href="#about" class="nav-link">Über Uns</a>
+                <a href="#küche" class="nav-link">Unsere Küche</a>
+                <a href="#kontakt" class="nav-link">Kontakt</a>
+                <a href="https://www.lieferando.de/speisekarte/pizza-u-kebap-anatolia-ostfildern" target="_blank" rel="noopener" class="btn-primary" style="padding: 10px 22px; font-size: 0.9rem;">Jetzt Bestellen</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-bg">
+            <img src="https://img.restaurantguru.com/rc43-photo-Anatolia-Pizza-and-Kebap-Ruit-2020-08-3.jpg"
+                 alt="Anatolia Pizza und Kebap Restaurant Fassade Ostfildern-Ruit"
+                 fetchpriority="high">
+        </div>
+        <div class="container">
+            <div class="hero-content reveal">
+                <div class="badge">Seit Jahren für Ruit</div>
+                <h1 id="hero-heading">Ehrliches Kebap.<br><span class="accent">Echte Steinofenpizza.</span></h1>
+                <p>Handwerk aus der Kirchheimer Straße – frisch, knusprig, aus echter Zubereitung. Kein Aufwärmen. Kein Tiefkühl. Nur echter Geschmack.</p>
+                <div class="hero-actions">
+                    <a href="https://www.lieferando.de/speisekarte/pizza-u-kebap-anatolia-ostfildern" target="_blank" rel="noopener" class="btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        Online Bestellen
+                    </a>
+                    <a href="tel:+4971131019620" class="btn-ghost">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.11 6.11l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+                        0711 3101962
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Strip -->
+    <div class="info-strip">
+        <div class="container info-grid">
+            <div class="info-item reveal">
+                <div class="info-label">Adresse</div>
+                <div class="info-value">Kirchheimer Str. 7, 73760 Ostfildern-Ruit</div>
+            </div>
+            <div class="info-item reveal delay-1">
+                <div class="info-label">Telefon</div>
+                <div class="info-value"><a href="tel:+4971131019620">0711 3101962</a></div>
+            </div>
+            <div class="info-item reveal delay-2">
+                <div class="info-label">Öffnungszeiten heute</div>
+                <div class="info-value" id="todayHours">wird geladen…</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container grid-2">
+            <div class="about-text reveal">
+                <div class="badge">Unser Handwerk</div>
+                <h2>Wo Geschmack auf <span class="accent">Qualität</span> trifft.</h2>
+                <p>Es ist nicht einfach Fast-Food. Es ist unsere Überzeugung, dass ein richtiger Döner oder eine Pizza nur dann schmeckt, wenn sie mit Herz gemacht wird. Bei uns siehst du, wie dein Essen entsteht.</p>
+                <p>Unser Fleisch wird täglich gewürzt, das Gemüse kommt frisch vom Markt, und das Fladenbrot backen wir direkt vor deinen Augen auf dem heißen Stein.</p>
+            </div>
+            <div class="img-card reveal delay-1">
+                <img src="https://media-cdn.tripadvisor.com/media/photo-m/1280/16/7c/e5/ad/photo0jpg.jpg"
+                     alt="Anatolia Innenraum und Theke" loading="lazy">
+                <div class="img-caption">Blick in unsere Küche</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section class="section" style="background: var(--bg-warm);" aria-labelledby="why-heading">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="badge">Warum Anatolia?</div>
+                <h2 id="why-heading">Frisch. Echt. <span class="accent">Beständig.</span></h2>
+                <p>Was unsere Gäste seit Jahren zurückbringt.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card reveal delay-1">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <h3>Frische Zutaten</h3>
+                    <p>Kein Tiefkühlprodukt. Alles wird täglich frisch angeliefert und vor Ort verarbeitet.</p>
+                </div>
+                <div class="why-card reveal delay-2">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Schnelle Lieferung</h3>
+                    <p>Über Lieferando direkt zu dir nach Hause – heiß und knusprig wie aus der Küche.</p>
+                </div>
+                <div class="why-card reveal delay-3">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <h3>Seit Jahren beliebt</h3>
+                    <p>Ein fester Bestandteil von Ostfildern-Ruit. Unsere Stammgäste kommen aus gutem Grund immer wieder.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlights -->
+    <section class="section" id="küche">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Unsere <span class="accent">Meisterstücke.</span></h2>
+                <p>Zwei Highlights — ein gemeinsamer Anspruch: maximaler Geschmack aus echter Küche.</p>
+            </div>
+
+            <div class="menu-row">
+                <div class="img-card reveal">
+                    <img src="assets/img/doner.png" alt="Gourmet Döner Sandwich mit frischen Zutaten" loading="lazy">
+                </div>
+                <div class="reveal delay-1">
+                    <div class="badge">Der Klassiker</div>
+                    <h2>Das Original<br><span class="accent">Döner Sandwich.</span></h2>
+                    <p>Feinstes Fleisch, frisch vom Spieß geschnitten. Knackiger Salat, saftige Tomaten und rote Zwiebeln – vereint im knusprigen hausgemachten Fladenbrot und veredelt mit cremiger Knoblauchsoße.</p>
+                </div>
+            </div>
+
+            <div class="menu-row" style="margin-bottom:0">
+                <div class="reveal">
+                    <div class="badge">Aus dem Steinofen</div>
+                    <h2>Artisanal<br><span class="accent">Sucuk Pizza.</span></h2>
+                    <p>Neapolitanischer Teig, würzige türkische Sucuk, zartschmelzender Mozzarella und frisches Basilikum – perfekt kombiniert auf einer Kruste mit den klassischen Leopardenflecken aus unserem Steinofen.</p>
+                    <div style="margin-top: var(--space-xl);">
+                        <a href="https://www.lieferando.de/speisekarte/pizza-u-kebap-anatolia-ostfildern" target="_blank" rel="noopener" class="btn-primary">Zur Speisekarte</a>
+                    </div>
+                </div>
+                <div class="img-card reveal delay-1">
+                    <img src="assets/img/pizza.png" alt="Artisanale Sucuk Steinofenpizza" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours & Contact -->
+    <section class="section" id="kontakt" style="background: var(--bg-warm);">
+        <div class="container grid-2">
+            <div class="reveal">
+                <div class="badge">Wann & Wo</div>
+                <h2>Öffnungszeiten &amp; <span class="accent">Kontakt.</span></h2>
+                <p>Wir freuen uns auf deinen Besuch. Ob vor Ort oder per Lieferservice – wir sind für dich da.</p>
+                <table class="hours-table">
+                    <tr><td>Montag – Freitag</td><td>11:00 – 22:30 Uhr</td></tr>
+                    <tr><td>Samstag</td><td>11:00 – 22:30 Uhr</td></tr>
+                    <tr><td>Sonntag</td><td>12:00 – 22:00 Uhr</td></tr>
+                </table>
+                <div style="margin-top: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-sm);">
+                    <a href="tel:+4971131019620" style="font-weight: 600; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 8px; color: var(--brand);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.11 6.11l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+                        0711 3101962
+                    </a>
+                    <span style="color: var(--text-muted); font-size: 1rem;">Kirchheimer Str. 7, 73760 Ostfildern-Ruit</span>
+                </div>
+            </div>
+            <div class="reveal delay-1">
+                <!-- Google Maps Embed -->
+                <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); height: 380px;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2629.4!2d9.2375!3d48.7289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799ca!2sKirchheimer%20Str.%207%2C%2073760%20Ostfildern!5e0!3m2!1sde!2sde!4v1"
+                        width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Standort von Anatolia Pizza und Kebap in Ostfildern-Ruit">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-section">
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="reveal">
+                <h2>Hunger? <span style="font-style: italic; color: #e9899c;">Sofort lieferbar.</span></h2>
+                <p>Bestell jetzt über Lieferando – direkt an deine Tür, heiß, frisch und ohne Aufwärmen.</p>
+                <a href="https://www.lieferando.de/speisekarte/pizza-u-kebap-anatolia-ostfildern" target="_blank" rel="noopener" class="btn-primary" style="font-size: 1.1rem; padding: 16px 40px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    Jetzt über Lieferando Bestellen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/img/logo.png" alt="Anatolia Logo" style="filter: grayscale(1); opacity: 0.6;">
+                    <p>Kirchheimer Str. 7<br>73760 Ostfildern-Ruit<br>Tel: <a href="tel:+4971131019620" style="color: inherit;">0711 3101962</a></p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#about">Über Uns</a></li>
+                        <li><a href="#küche">Unsere Küche</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                        <li><a href="https://www.lieferando.de/speisekarte/pizza-u-kebap-anatolia-ostfildern" target="_blank" rel="noopener">Online Bestellen</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Rechtliches</h4>
+                    <button onclick="openModal('impressumModal')">Impressum</button>
+                    <button onclick="openModal('datenschutzModal')">Datenschutz</button>
+                    <button onclick="resetCookies()">Cookie-Einstellungen</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 Anatolia Pizza & Kebap, Ostfildern-Ruit. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Call Button (mobile) -->
+    <a href="tel:+4971131019620" class="fab-call" aria-label="Anrufen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.11 6.11l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+    </a>
+
+    <!-- Cookie Banner -->
+    <div class="cookie" id="cookieBanner" role="dialog" aria-labelledby="cookie-title" aria-live="polite">
+        <h3 id="cookie-title">Wir schätzen Ihre Privatsphäre</h3>
+        <p>Wir verwenden essentielle Cookies für die Grundfunktionen dieser Website. Optional können Analyse-Cookies aktiviert werden, um unser Angebot zu verbessern.</p>
+        <div class="cookie-btns">
+            <button class="btn-ghost" style="padding:10px 20px;" onclick="closeCookie(false)">Ablehnen</button>
+            <button class="btn-primary" style="padding:10px 22px;" onclick="closeCookie(true)">Alle Akzeptieren</button>
+        </div>
+    </div>
+
+    <!-- Impressum Modal -->
+    <div class="modal-overlay" id="impressumModal" onclick="outsideClose(event,'impressumModal')" role="dialog" aria-modal="true" aria-labelledby="imp-title">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h2 id="imp-title">Impressum</h2>
+                <button class="modal-close-btn" onclick="closeModal('impressumModal')" aria-label="Schließen">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Angaben gemäß § 5 TMG</h3>
+                <p><strong>Anatolia Pizza &amp; Kebap</strong><br>
+                Kirchheimer Str. 7<br>73760 Ostfildern-Ruit</p>
+                <p><strong>Vertreten durch:</strong><br>[Name des Inhabers – bitte ergänzen]</p>
+                <h3>Kontakt</h3>
+                <p>Telefon: <a href="tel:+4971131019620">0711 3101962</a><br>
+                E-Mail: info@pizza-u-kebap-anatolia.de</p>
+                <h3>Streitschlichtung</h3>
+                <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Datenschutz Modal -->
+    <div class="modal-overlay" id="datenschutzModal" onclick="outsideClose(event,'datenschutzModal')" role="dialog" aria-modal="true" aria-labelledby="ds-title">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h2 id="ds-title">Datenschutz&shy;erklärung</h2>
+                <button class="modal-close-btn" onclick="closeModal('datenschutzModal')" aria-label="Schließen">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>1. Datenschutz auf einen Blick</h3>
+                <p><strong>Allgemeine Hinweise:</strong> Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+                <h3>2. Datenerfassung auf dieser Website</h3>
+                <p><strong>Cookies:</strong> Diese Website verwendet Cookies – kleine Textdateien, die auf Ihrem Gerät gespeichert werden. Technisch notwendige Cookies werden ohne Ihre Einwilligung gesetzt. Analyse-Cookies nur nach Ihrer Zustimmung.</p>
+                <p><strong>Server-Log-Dateien:</strong> Der Hosting-Provider erhebt automatisch Informationen in Server-Log-Dateien (Browser-Typ, Betriebssystem, IP-Adresse, Zugriffszeit). Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.</p>
+                <h3>3. Externe Dienste</h3>
+                <p><strong>Google Maps:</strong> Diese Website bindet Google Maps ein. Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Weitere Infos unter <a href="https://policies.google.com/privacy" target="_blank">policies.google.com</a>.</p>
+                <p><strong>Google Fonts:</strong> Zur einheitlichen Darstellung von Schriftarten werden Google Fonts verwendet. Beim Aufruf lädt Ihr Browser die Schriftarten von Google-Servern. Weitere Infos unter <a href="https://developers.google.com/fonts/faq" target="_blank">Google Fonts FAQ</a>.</p>
+                <h3>4. Ihre Rechte</h3>
+                <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer gespeicherten Daten sowie ein Widerspruchsrecht gegen die Verarbeitung. Wenden Sie sich dafür an: <a href="tel:+4971131019620">0711 3101962</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ── Reveal on scroll ─────────────────────────── */
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        /* ── Dynamic "today's hours" ──────────────────── */
+        const hours = {
+            0: { label: 'Sonntag', time: '12:00–22:00 Uhr' },   // Sunday
+            1: { label: 'Montag',  time: '11:00–22:30 Uhr' },
+            2: { label: 'Dienstag',time: '11:00–22:30 Uhr' },
+            3: { label: 'Mittwoch',time: '11:00–22:30 Uhr' },
+            4: { label: 'Donnerstag',time:'11:00–22:30 Uhr' },
+            5: { label: 'Freitag', time: '11:00–22:30 Uhr' },
+            6: { label: 'Samstag', time: '11:00–22:30 Uhr' },
+        };
+        const today = new Date().getDay();
+        document.getElementById('todayHours').textContent = hours[today].time;
+
+        /* ── Cookie Banner ────────────────────────────── */
+        const banner = document.getElementById('cookieBanner');
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('anatolia_cookies')) setTimeout(() => banner.classList.add('show'), 1500);
+        });
+        function closeCookie(accepted) {
+            localStorage.setItem('anatolia_cookies', accepted ? 'yes' : 'no');
+            banner.classList.remove('show');
+        }
+        function resetCookies() {
+            localStorage.removeItem('anatolia_cookies');
+            banner.classList.add('show');
+        }
+
+        /* ── Modals ───────────────────────────────────── */
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function outsideClose(e, id) {
+            if (e.target.id === id) closeModal(id);
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+        });
+    </script>
+</body>
+</html>
